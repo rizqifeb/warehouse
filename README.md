@@ -41,10 +41,10 @@ A comprehensive Django-based warehouse information system for managing inventory
 ## Technology Stack
 
 - **Backend**: Django 6.0
-- **Frontend**: Bootstrap 5.1.3, jQuery 3.6.0
+- **Frontend**: Tailwind CSS 3.x, jQuery 3.6.0
 - **Database**: SQLite (default, easily configurable for PostgreSQL/MySQL)
 - **Icons**: Font Awesome 6.0
-- **Styling**: Custom CSS with responsive design
+- **Styling**: Modern Tailwind CSS with responsive design
 
 ## Installation
 

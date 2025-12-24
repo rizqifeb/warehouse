@@ -3,215 +3,222 @@
 {% block title %}Dashboard - Warehouse Management System{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-12">
-        <h1 class="mb-4">
-            <i class="fas fa-tachometer-alt"></i> Dashboard
-        </h1>
-    </div>
+<!-- Header -->
+<div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
+    <p class="text-gray-600">Welcome to your warehouse management system</p>
 </div>
 
 <!-- Statistics Cards -->
-<div class="row mb-4">
-    <div class="col-md-3">
-        <div class="card bg-primary text-white">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h4>{{ total_products }}</h4>
-                        <p class="mb-0">Total Products</p>
-                    </div>
-                    <div class="align-self-center">
-                        <i class="fas fa-box fa-2x"></i>
-                    </div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <!-- Total Products -->
+    <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-box text-blue-600 text-xl"></i>
                 </div>
+            </div>
+            <div class="ml-4">
+                <p class="text-sm font-medium text-gray-600">Total Products</p>
+                <p class="text-2xl font-bold text-gray-900">{{ total_products }}</p>
             </div>
         </div>
     </div>
-    
-    <div class="col-md-3">
-        <div class="card bg-warning text-white">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h4>{{ low_stock_products }}</h4>
-                        <p class="mb-0">Low Stock Items</p>
-                    </div>
-                    <div class="align-self-center">
-                        <i class="fas fa-exclamation-triangle fa-2x"></i>
-                    </div>
+
+    <!-- Low Stock Items -->
+    <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-exclamation-triangle text-yellow-600 text-xl"></i>
                 </div>
+            </div>
+            <div class="ml-4">
+                <p class="text-sm font-medium text-gray-600">Low Stock Items</p>
+                <p class="text-2xl font-bold text-gray-900">{{ low_stock_products }}</p>
             </div>
         </div>
     </div>
-    
-    <div class="col-md-3">
-        <div class="card bg-success text-white">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h4>{{ total_suppliers }}</h4>
-                        <p class="mb-0">Suppliers</p>
-                    </div>
-                    <div class="align-self-center">
-                        <i class="fas fa-truck fa-2x"></i>
-                    </div>
+
+    <!-- Total Suppliers -->
+    <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-truck text-green-600 text-xl"></i>
                 </div>
+            </div>
+            <div class="ml-4">
+                <p class="text-sm font-medium text-gray-600">Total Suppliers</p>
+                <p class="text-2xl font-bold text-gray-900">{{ total_suppliers }}</p>
             </div>
         </div>
     </div>
-    
-    <div class="col-md-3">
-        <div class="card bg-info text-white">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h4>{{ pending_orders }}</h4>
-                        <p class="mb-0">Pending Orders</p>
-                    </div>
-                    <div class="align-self-center">
-                        <i class="fas fa-shopping-cart fa-2x"></i>
-                    </div>
+
+    <!-- Pending Orders -->
+    <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-shopping-cart text-purple-600 text-xl"></i>
                 </div>
+            </div>
+            <div class="ml-4">
+                <p class="text-sm font-medium text-gray-600">Pending Orders</p>
+                <p class="text-2xl font-bold text-gray-900">{{ pending_orders }}</p>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row">
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
     <!-- Recent Stock Movements -->
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mb-0">
-                    <i class="fas fa-exchange-alt"></i> Recent Stock Movements
-                </h5>
-            </div>
-            <div class="card-body">
-                {% if recent_movements %}
-                    <div class="table-responsive">
-                        <table class="table table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Type</th>
-                                    <th>Quantity</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for movement in recent_movements %}
-                                <tr>
-                                    <td>
-                                        <a href="{% url 'product_detail' movement.product.pk %}">
-                                            {{ movement.product.name }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-{% if movement.movement_type == 'IN' %}success{% elif movement.movement_type == 'OUT' %}danger{% else %}warning{% endif %}">
-                                            {{ movement.get_movement_type_display }}
-                                        </span>
-                                    </td>
-                                    <td>{{ movement.quantity }}</td>
-                                    <td>{{ movement.created_at|date:"M d, Y" }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                {% else %}
-                    <p class="text-muted">No recent stock movements.</p>
-                {% endif %}
-            </div>
+    <div class="bg-white rounded-lg shadow-md">
+        <div class="px-6 py-4 border-b border-gray-200">
+            <h2 class="text-lg font-semibold text-gray-900 flex items-center">
+                <i class="fas fa-exchange-alt text-blue-600 mr-2"></i>
+                Recent Stock Movements
+            </h2>
+        </div>
+        <div class="p-6">
+            {% if recent_movements %}
+                <div class="space-y-4">
+                    {% for movement in recent_movements %}
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0">
+                                    {% if movement.movement_type == 'IN' %}
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-arrow-up text-green-600 text-sm"></i>
+                                        </div>
+                                    {% elif movement.movement_type == 'OUT' %}
+                                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-arrow-down text-red-600 text-sm"></i>
+                                        </div>
+                                    {% else %}
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-edit text-blue-600 text-sm"></i>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900">{{ movement.product.name }}</p>
+                                    <p class="text-xs text-gray-500">{{ movement.location.name }} • {{ movement.created_at|date:"M d, Y" }}</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-medium {% if movement.movement_type == 'IN' %}text-green-600{% elif movement.movement_type == 'OUT' %}text-red-600{% else %}text-blue-600{% endif %}">
+                                    {% if movement.movement_type == 'IN' %}+{% elif movement.movement_type == 'OUT' %}-{% endif %}{{ movement.quantity }}
+                                </p>
+                                <p class="text-xs text-gray-500">{{ movement.movement_type }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center py-8">
+                    <i class="fas fa-exchange-alt text-gray-300 text-4xl mb-4"></i>
+                    <p class="text-gray-500">No recent stock movements</p>
+                </div>
+            {% endif %}
         </div>
     </div>
-    
-    <!-- Low Stock Items -->
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mb-0">
-                    <i class="fas fa-exclamation-triangle text-warning"></i> Low Stock Alert
-                </h5>
-            </div>
-            <div class="card-body">
-                {% if low_stock_items %}
-                    <div class="table-responsive">
-                        <table class="table table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Current Stock</th>
-                                    <th>Reorder Level</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for product in low_stock_items %}
-                                <tr>
-                                    <td>
-                                        <a href="{% url 'product_detail' product.pk %}">
-                                            {{ product.name }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-danger">{{ product.current_stock }}</span>
-                                    </td>
-                                    <td>{{ product.reorder_level }}</td>
-                                    <td>
-                                        <a href="{% url 'purchase_order_create' %}" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-plus"></i> Order
-                                        </a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                {% else %}
-                    <div class="alert alert-success">
-                        <i class="fas fa-check-circle"></i> All products are adequately stocked!
-                    </div>
-                {% endif %}
-            </div>
+
+    <!-- Low Stock Alerts -->
+    <div class="bg-white rounded-lg shadow-md">
+        <div class="px-6 py-4 border-b border-gray-200">
+            <h2 class="text-lg font-semibold text-gray-900 flex items-center">
+                <i class="fas fa-exclamation-triangle text-yellow-600 mr-2"></i>
+                Low Stock Alerts
+            </h2>
+        </div>
+        <div class="p-6">
+            {% if low_stock_items %}
+                <div class="space-y-4">
+                    {% for item in low_stock_items %}
+                        <div class="flex items-center justify-between p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-box text-yellow-600 text-sm"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900">{{ item.name }}</p>
+                                    <p class="text-xs text-gray-500">SKU: {{ item.sku }}</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-medium text-yellow-700">{{ item.current_stock }} left</p>
+                                <p class="text-xs text-gray-500">Reorder at {{ item.reorder_level }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <a href="{% url 'product_list' %}?stock_status=low" class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+                        View all low stock items →
+                    </a>
+                </div>
+            {% else %}
+                <div class="text-center py-8">
+                    <i class="fas fa-check-circle text-green-300 text-4xl mb-4"></i>
+                    <p class="text-gray-500">All products are well stocked</p>
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>
 
 <!-- Quick Actions -->
-<div class="row mt-4">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mb-0">
-                    <i class="fas fa-bolt"></i> Quick Actions
-                </h5>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-3 mb-2">
-                        <a href="{% url 'product_create' %}" class="btn btn-primary btn-block w-100">
-                            <i class="fas fa-plus"></i> Add Product
-                        </a>
+<div class="bg-white rounded-lg shadow-md">
+    <div class="px-6 py-4 border-b border-gray-200">
+        <h2 class="text-lg font-semibold text-gray-900 flex items-center">
+            <i class="fas fa-bolt text-blue-600 mr-2"></i>
+            Quick Actions
+        </h2>
+    </div>
+    <div class="p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <a href="{% url 'product_create' %}" class="flex items-center justify-center p-4 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors group">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:bg-blue-200 transition-colors">
+                        <i class="fas fa-plus text-blue-600 text-xl"></i>
                     </div>
-                    <div class="col-md-3 mb-2">
-                        <a href="{% url 'stock_movement_create' %}" class="btn btn-success btn-block w-100">
-                            <i class="fas fa-exchange-alt"></i> Record Stock Movement
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                        <a href="{% url 'purchase_order_create' %}" class="btn btn-info btn-block w-100">
-                            <i class="fas fa-shopping-cart"></i> Create Purchase Order
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                        <a href="{% url 'reports' %}" class="btn btn-secondary btn-block w-100">
-                            <i class="fas fa-chart-bar"></i> View Reports
-                        </a>
-                    </div>
+                    <p class="text-sm font-medium text-blue-900">Add Product</p>
                 </div>
-            </div>
+            </a>
+
+            <a href="{% url 'stock_movement_create' %}" class="flex items-center justify-center p-4 bg-green-50 border border-green-200 rounded-lg hover:bg-green-100 transition-colors group">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:bg-green-200 transition-colors">
+                        <i class="fas fa-exchange-alt text-green-600 text-xl"></i>
+                    </div>
+                    <p class="text-sm font-medium text-green-900">Record Movement</p>
+                </div>
+            </a>
+
+            <a href="{% url 'purchase_order_create' %}" class="flex items-center justify-center p-4 bg-purple-50 border border-purple-200 rounded-lg hover:bg-purple-100 transition-colors group">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:bg-purple-200 transition-colors">
+                        <i class="fas fa-shopping-cart text-purple-600 text-xl"></i>
+                    </div>
+                    <p class="text-sm font-medium text-purple-900">Create Order</p>
+                </div>
+            </a>
+
+            <a href="{% url 'reports' %}" class="flex items-center justify-center p-4 bg-orange-50 border border-orange-200 rounded-lg hover:bg-orange-100 transition-colors group">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:bg-orange-200 transition-colors">
+                        <i class="fas fa-chart-bar text-orange-600 text-xl"></i>
+                    </div>
+                    <p class="text-sm font-medium text-orange-900">View Reports</p>
+                </div>
+            </a>
         </div>
     </div>
 </div>
 {% endblock %}
+

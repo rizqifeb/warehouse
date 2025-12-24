@@ -1,15 +1,12 @@
 // Main JavaScript for Warehouse Management System
 
 $(document).ready(function() {
-    // Initialize tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
+    // Initialize tooltips (custom implementation for Tailwind)
+    initializeTooltips();
 
     // Auto-hide alerts after 5 seconds
     setTimeout(function() {
-        $('.alert').fadeOut('slow');
+        $('.alert, [class*="bg-green-50"], [class*="bg-red-50"], [class*="bg-yellow-50"], [class*="bg-blue-50"]').fadeOut('slow');
     }, 5000);
 
     // Confirm delete actions
@@ -197,6 +194,120 @@ function formatDate(dateString) {
 // Print function
 function printPage() {
     window.print();
+}
+
+// Initialize tooltips for Tailwind CSS
+function initializeTooltips() {
+    const tooltipTriggers = document.querySelectorAll('[data-tooltip]');
+    
+    tooltipTriggers.forEach(function(trigger) {
+        const tooltipText = trigger.getAttribute('data-tooltip');
+        
+        // Create tooltip element
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+        tooltip.textContent = tooltipText;
+        document.body.appendChild(tooltip);
+        
+        // Show tooltip on hover
+        trigger.addEventListener('mouseenter', function() {
+            const rect = trigger.getBoundingClientRect();
+            tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+            tooltip.style.top = rect.top - tooltip.offsetHeight - 5 + 'px';
+            tooltip.classList.add('show');
+        });
+        
+        // Hide tooltip
+        trigger.addEventListener('mouseleave', function() {
+            tooltip.classList.remove('show');
+        });
+    });
+}
+
+// Enhanced loading states for Tailwind
+function showLoadingState(element, text = 'Loading...') {
+    const originalContent = element.innerHTML;
+    element.setAttribute('data-original-content', originalContent);
+    element.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>${text}`;
+    element.disabled = true;
+    element.classList.add('opacity-50', 'cursor-not-allowed');
+}
+
+function hideLoadingState(element) {
+    const originalContent = element.getAttribute('data-original-content');
+    if (originalContent) {
+        element.innerHTML = originalContent;
+        element.removeAttribute('data-original-content');
+    }
+    element.disabled = false;
+    element.classList.remove('opacity-50', 'cursor-not-allowed');
+}
+
+// Enhanced form validation
+function validateForm(formElement) {
+    const requiredFields = formElement.querySelectorAll('[required]');
+    let isValid = true;
+    
+    requiredFields.forEach(function(field) {
+        if (!field.value.trim()) {
+            field.classList.add('border-red-300', 'focus:border-red-500', 'focus:ring-red-500');
+            field.classList.remove('border-gray-300', 'focus:border-blue-500', 'focus:ring-blue-500');
+            isValid = false;
+        } else {
+            field.classList.remove('border-red-300', 'focus:border-red-500', 'focus:ring-red-500');
+            field.classList.add('border-gray-300', 'focus:border-blue-500', 'focus:ring-blue-500');
+        }
+    });
+    
+    return isValid;
+}
+
+// Notification system for Tailwind
+function showNotification(message, type = 'info', duration = 5000) {
+    const notification = document.createElement('div');
+    const typeClasses = {
+        success: 'bg-green-50 border-green-200 text-green-800',
+        error: 'bg-red-50 border-red-200 text-red-800',
+        warning: 'bg-yellow-50 border-yellow-200 text-yellow-800',
+        info: 'bg-blue-50 border-blue-200 text-blue-800'
+    };
+    
+    const iconClasses = {
+        success: 'fas fa-check-circle',
+        error: 'fas fa-exclamation-circle',
+        warning: 'fas fa-exclamation-triangle',
+        info: 'fas fa-info-circle'
+    };
+    
+    notification.className = `fixed top-4 right-4 z-50 p-4 rounded-md border ${typeClasses[type]} shadow-lg transform translate-x-full transition-transform duration-300`;
+    notification.innerHTML = `
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <i class="${iconClasses[type]} mr-2"></i>
+                ${message}
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.classList.remove('translate-x-full');
+    }, 100);
+    
+    // Auto remove
+    setTimeout(() => {
+        notification.classList.add('translate-x-full');
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.remove();
+            }
+        }, 300);
+    }, duration);
 }
 
 // Export to CSV (basic implementation)
