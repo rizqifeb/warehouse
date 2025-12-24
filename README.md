@@ -83,6 +83,13 @@ A comprehensive Django-based warehouse information system for managing inventory
    ```
 
 6. **Load sample data (optional)**
+   
+   **Option A: Using Python script (recommended for first-time setup)**
+   ```bash
+   python create_sample_data.py
+   ```
+   
+   **Option B: Using Django fixture**
    ```bash
    python manage.py loaddata sample_data.json
    ```

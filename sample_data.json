@@ -1,0 +1,446 @@
+[
+{
+  "model": "inventory.category",
+  "pk": 1,
+  "fields": {
+    "name": "Electronics",
+    "description": "Electronic devices and components",
+    "created_at": "2025-12-24T08:30:49.179Z",
+    "updated_at": "2025-12-24T08:30:49.179Z"
+  }
+},
+{
+  "model": "inventory.category",
+  "pk": 2,
+  "fields": {
+    "name": "Office Supplies",
+    "description": "Office equipment and supplies",
+    "created_at": "2025-12-24T08:30:49.181Z",
+    "updated_at": "2025-12-24T08:30:49.181Z"
+  }
+},
+{
+  "model": "inventory.category",
+  "pk": 3,
+  "fields": {
+    "name": "Tools",
+    "description": "Hand tools and equipment",
+    "created_at": "2025-12-24T08:30:49.182Z",
+    "updated_at": "2025-12-24T08:30:49.182Z"
+  }
+},
+{
+  "model": "inventory.category",
+  "pk": 4,
+  "fields": {
+    "name": "Furniture",
+    "description": "Office and warehouse furniture",
+    "created_at": "2025-12-24T08:30:49.183Z",
+    "updated_at": "2025-12-24T08:30:49.183Z"
+  }
+},
+{
+  "model": "inventory.category",
+  "pk": 5,
+  "fields": {
+    "name": "Safety Equipment",
+    "description": "Safety gear and equipment",
+    "created_at": "2025-12-24T08:30:49.184Z",
+    "updated_at": "2025-12-24T08:30:49.184Z"
+  }
+},
+{
+  "model": "inventory.supplier",
+  "pk": 1,
+  "fields": {
+    "name": "TechCorp Solutions",
+    "contact_person": "John Smith",
+    "email": "john@techcorp.com",
+    "phone": "+1-555-0101",
+    "address": "123 Tech Street, Silicon Valley, CA 94000",
+    "created_at": "2025-12-24T08:30:49.185Z",
+    "updated_at": "2025-12-24T08:30:49.185Z"
+  }
+},
+{
+  "model": "inventory.supplier",
+  "pk": 2,
+  "fields": {
+    "name": "Office Plus Inc",
+    "contact_person": "Sarah Johnson",
+    "email": "sarah@officeplus.com",
+    "phone": "+1-555-0102",
+    "address": "456 Business Ave, New York, NY 10001",
+    "created_at": "2025-12-24T08:30:49.186Z",
+    "updated_at": "2025-12-24T08:30:49.186Z"
+  }
+},
+{
+  "model": "inventory.supplier",
+  "pk": 3,
+  "fields": {
+    "name": "Industrial Tools Ltd",
+    "contact_person": "Mike Wilson",
+    "email": "mike@industrialtools.com",
+    "phone": "+1-555-0103",
+    "address": "789 Industrial Blvd, Detroit, MI 48201",
+    "created_at": "2025-12-24T08:30:49.187Z",
+    "updated_at": "2025-12-24T08:30:49.187Z"
+  }
+},
+{
+  "model": "inventory.supplier",
+  "pk": 4,
+  "fields": {
+    "name": "Furniture World",
+    "contact_person": "Lisa Brown",
+    "email": "lisa@furnitureworld.com",
+    "phone": "+1-555-0104",
+    "address": "321 Furniture Row, Atlanta, GA 30301",
+    "created_at": "2025-12-24T08:30:49.188Z",
+    "updated_at": "2025-12-24T08:30:49.188Z"
+  }
+},
+{
+  "model": "inventory.product",
+  "pk": 1,
+  "fields": {
+    "name": "Laptop Computer",
+    "sku": "TECH-001",
+    "description": "High-performance business laptop",
+    "category": 1,
+    "supplier": 1,
+    "unit_price": "899.99",
+    "reorder_level": 5,
+    "created_at": "2025-12-24T08:30:49.195Z",
+    "updated_at": "2025-12-24T08:30:49.195Z"
+  }
+},
+{
+  "model": "inventory.product",
+  "pk": 2,
+  "fields": {
+    "name": "Wireless Mouse",
+    "sku": "TECH-002",
+    "description": "Ergonomic wireless mouse",
+    "category": 1,
+    "supplier": 1,
+    "unit_price": "29.99",
+    "reorder_level": 20,
+    "created_at": "2025-12-24T08:30:49.197Z",
+    "updated_at": "2025-12-24T08:30:49.197Z"
+  }
+},
+{
+  "model": "inventory.product",
+  "pk": 3,
+  "fields": {
+    "name": "Office Chair",
+    "sku": "FURN-001",
+    "description": "Ergonomic office chair with lumbar support",
+    "category": 4,
+    "supplier": 4,
+    "unit_price": "199.99",
+    "reorder_level": 10,
+    "created_at": "2025-12-24T08:30:49.198Z",
+    "updated_at": "2025-12-24T08:30:49.198Z"
+  }
+},
+{
+  "model": "inventory.product",
+  "pk": 4,
+  "fields": {
+    "name": "Desk Lamp",
+    "sku": "OFF-001",
+    "description": "LED desk lamp with adjustable brightness",
+    "category": 2,
+    "supplier": 2,
+    "unit_price": "39.99",
+    "reorder_level": 15,
+    "created_at": "2025-12-24T08:30:49.199Z",
+    "updated_at": "2025-12-24T08:30:49.199Z"
+  }
+},
+{
+  "model": "inventory.product",
+  "pk": 5,
+  "fields": {
+    "name": "Screwdriver Set",
+    "sku": "TOOL-001",
+    "description": "Professional screwdriver set with 12 pieces",
+    "category": 3,
+    "supplier": 3,
+    "unit_price": "24.99",
+    "reorder_level": 8,
+    "created_at": "2025-12-24T08:30:49.200Z",
+    "updated_at": "2025-12-24T08:30:49.200Z"
+  }
+},
+{
+  "model": "inventory.product",
+  "pk": 6,
+  "fields": {
+    "name": "Safety Helmet",
+    "sku": "SAFE-001",
+    "description": "Industrial safety helmet",
+    "category": 5,
+    "supplier": 3,
+    "unit_price": "19.99",
+    "reorder_level": 25,
+    "created_at": "2025-12-24T08:30:49.201Z",
+    "updated_at": "2025-12-24T08:30:49.201Z"
+  }
+},
+{
+  "model": "inventory.product",
+  "pk": 7,
+  "fields": {
+    "name": "Printer Paper",
+    "sku": "OFF-002",
+    "description": "A4 printer paper, 500 sheets",
+    "category": 2,
+    "supplier": 2,
+    "unit_price": "9.99",
+    "reorder_level": 50,
+    "created_at": "2025-12-24T08:30:49.203Z",
+    "updated_at": "2025-12-24T08:30:49.203Z"
+  }
+},
+{
+  "model": "inventory.product",
+  "pk": 8,
+  "fields": {
+    "name": "Monitor Stand",
+    "sku": "FURN-002",
+    "description": "Adjustable monitor stand",
+    "category": 4,
+    "supplier": 4,
+    "unit_price": "49.99",
+    "reorder_level": 12,
+    "created_at": "2025-12-24T08:30:49.204Z",
+    "updated_at": "2025-12-24T08:30:49.204Z"
+  }
+},
+{
+  "model": "inventory.location",
+  "pk": 1,
+  "fields": {
+    "name": "Warehouse A",
+    "description": "Main warehouse storage area",
+    "created_at": "2025-12-24T08:30:49.190Z"
+  }
+},
+{
+  "model": "inventory.location",
+  "pk": 2,
+  "fields": {
+    "name": "Warehouse B",
+    "description": "Secondary storage area",
+    "created_at": "2025-12-24T08:30:49.191Z"
+  }
+},
+{
+  "model": "inventory.location",
+  "pk": 3,
+  "fields": {
+    "name": "Office Storage",
+    "description": "Office supply storage",
+    "created_at": "2025-12-24T08:30:49.192Z"
+  }
+},
+{
+  "model": "inventory.location",
+  "pk": 4,
+  "fields": {
+    "name": "Loading Dock",
+    "description": "Receiving and shipping area",
+    "created_at": "2025-12-24T08:30:49.193Z"
+  }
+},
+{
+  "model": "inventory.stockmovement",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "location": 1,
+    "movement_type": "IN",
+    "quantity": 10,
+    "reference": "INITIAL-001",
+    "notes": "Initial stock",
+    "created_by": 1,
+    "created_at": "2025-12-24T08:30:49.205Z"
+  }
+},
+{
+  "model": "inventory.stockmovement",
+  "pk": 2,
+  "fields": {
+    "product": 2,
+    "location": 1,
+    "movement_type": "IN",
+    "quantity": 50,
+    "reference": "INITIAL-002",
+    "notes": "Initial stock",
+    "created_by": 1,
+    "created_at": "2025-12-24T08:30:49.207Z"
+  }
+},
+{
+  "model": "inventory.stockmovement",
+  "pk": 3,
+  "fields": {
+    "product": 3,
+    "location": 2,
+    "movement_type": "IN",
+    "quantity": 15,
+    "reference": "INITIAL-003",
+    "notes": "Initial stock",
+    "created_by": 1,
+    "created_at": "2025-12-24T08:30:49.208Z"
+  }
+},
+{
+  "model": "inventory.stockmovement",
+  "pk": 4,
+  "fields": {
+    "product": 4,
+    "location": 3,
+    "movement_type": "IN",
+    "quantity": 25,
+    "reference": "INITIAL-004",
+    "notes": "Initial stock",
+    "created_by": 1,
+    "created_at": "2025-12-24T08:30:49.210Z"
+  }
+},
+{
+  "model": "inventory.stockmovement",
+  "pk": 5,
+  "fields": {
+    "product": 5,
+    "location": 1,
+    "movement_type": "IN",
+    "quantity": 20,
+    "reference": "INITIAL-005",
+    "notes": "Initial stock",
+    "created_by": 1,
+    "created_at": "2025-12-24T08:30:49.211Z"
+  }
+},
+{
+  "model": "inventory.stockmovement",
+  "pk": 6,
+  "fields": {
+    "product": 6,
+    "location": 2,
+    "movement_type": "IN",
+    "quantity": 30,
+    "reference": "INITIAL-006",
+    "notes": "Initial stock",
+    "created_by": 1,
+    "created_at": "2025-12-24T08:30:49.212Z"
+  }
+},
+{
+  "model": "inventory.stockmovement",
+  "pk": 7,
+  "fields": {
+    "product": 7,
+    "location": 3,
+    "movement_type": "IN",
+    "quantity": 100,
+    "reference": "INITIAL-007",
+    "notes": "Initial stock",
+    "created_by": 1,
+    "created_at": "2025-12-24T08:30:49.213Z"
+  }
+},
+{
+  "model": "inventory.stockmovement",
+  "pk": 8,
+  "fields": {
+    "product": 8,
+    "location": 2,
+    "movement_type": "IN",
+    "quantity": 18,
+    "reference": "INITIAL-008",
+    "notes": "Initial stock",
+    "created_by": 1,
+    "created_at": "2025-12-24T08:30:49.215Z"
+  }
+},
+{
+  "model": "inventory.purchaseorder",
+  "pk": 1,
+  "fields": {
+    "po_number": "PO-2024-001",
+    "supplier": 1,
+    "status": "SENT",
+    "order_date": "2025-12-19",
+    "expected_delivery": "2026-01-03",
+    "notes": "Urgent order for new laptops",
+    "created_by": 1,
+    "created_at": "2025-12-24T08:30:49.216Z",
+    "updated_at": "2025-12-24T08:30:49.216Z"
+  }
+},
+{
+  "model": "inventory.purchaseorder",
+  "pk": 2,
+  "fields": {
+    "po_number": "PO-2024-002",
+    "supplier": 2,
+    "status": "DRAFT",
+    "order_date": "2025-12-22",
+    "expected_delivery": "2025-12-31",
+    "notes": "Monthly office supplies order",
+    "created_by": 1,
+    "created_at": "2025-12-24T08:30:49.219Z",
+    "updated_at": "2025-12-24T08:30:49.219Z"
+  }
+},
+{
+  "model": "inventory.purchaseorderitem",
+  "pk": 1,
+  "fields": {
+    "purchase_order": 1,
+    "product": 1,
+    "quantity": 5,
+    "unit_price": "899.99",
+    "received_quantity": 0
+  }
+},
+{
+  "model": "inventory.purchaseorderitem",
+  "pk": 2,
+  "fields": {
+    "purchase_order": 1,
+    "product": 2,
+    "quantity": 10,
+    "unit_price": "29.99",
+    "received_quantity": 0
+  }
+},
+{
+  "model": "inventory.purchaseorderitem",
+  "pk": 3,
+  "fields": {
+    "purchase_order": 2,
+    "product": 4,
+    "quantity": 20,
+    "unit_price": "39.99",
+    "received_quantity": 0
+  }
+},
+{
+  "model": "inventory.purchaseorderitem",
+  "pk": 4,
+  "fields": {
+    "purchase_order": 2,
+    "product": 7,
+    "quantity": 50,
+    "unit_price": "9.99",
+    "received_quantity": 0
+  }
+}
+]
